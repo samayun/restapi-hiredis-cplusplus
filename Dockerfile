@@ -18,7 +18,7 @@ COPY . .
 # Set the entrypoint
 # CMD ["./app"]
 
-RUN g++ main.cpp -o app -lcpprest -lhiredis -pthread -lssl -lcrypto
+RUN g++ -o app main.cpp user_module.cpp -lcrypto -lcpprest -lhiredis -pthread -lssl -lcrypto
 
 RUN cat main.cpp && ./app
 

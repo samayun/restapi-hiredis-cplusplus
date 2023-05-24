@@ -1,2 +1,2 @@
-g++ main.cpp -o app -lcpprest -lhiredis -pthread -lssl -lcrypto
+g++ -o app main.cpp user_module.cpp -lcrypto -lcpprest -lhiredis -pthread -lssl -lcrypto
 ./app
