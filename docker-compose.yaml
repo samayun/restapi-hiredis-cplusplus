@@ -1,0 +1,25 @@
+version: "3"
+services:
+  # api:
+  #   build:
+  #     context: .
+  #   container_name: cplusplus-api
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - redis
+  redis:
+    image: redis:latest
+    container_name: cplusplus-cache
+    ports:
+      - "6363:6379"
+
+  redis-commander:
+    container_name: cplusplus-cache-admin
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - ${REDIS_COMMANDER_PORT:-8063}:8081
