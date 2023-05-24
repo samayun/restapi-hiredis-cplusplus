@@ -45,9 +45,25 @@ void printReply(redisReply *reply)
           }
 }
 
+// Function to handle authentication
+bool authenticate(const http_request &request)
+{
+          // Perform authentication logic here
+          // You can check for authentication headers, tokens, or any other mechanism
+
+          // For demonstration purposes, allow all requests
+          return true;
+}
+
 // Function to handle POST requests and create a new user
 void handlePost(const http_request &request)
 {
+          if (!authenticate(request))
+          {
+                    request.reply(status_codes::Unauthorized, "PLEASE LOGIN FIRST");
+                    return;
+          }
+
           // Read JSON body from the request
           json::value requestBody = request.extract_json().get();
 
@@ -79,6 +95,12 @@ void handlePost(const http_request &request)
 // Function to handle GET requests and retrieve user information
 void handleGet(const http_request &request)
 {
+          if (!authenticate(request))
+          {
+                    request.reply(status_codes::Unauthorized, "PLEASE LOGIN FIRST");
+                    return;
+          }
+
           // Extract user ID from the request URI
           std::string id = request.request_uri().to_string();
           std::cout << id << std::endl;
@@ -91,6 +113,7 @@ void handleGet(const http_request &request)
           // Construct JSON response
           json::value response;
           response["id"] = json::value::string(id);
+
           for (size_t i = 0; i < reply->elements; i += 2)
           {
                     std::string key = reply->element[i]->str;
@@ -105,6 +128,12 @@ void handleGet(const http_request &request)
 // Function to handle PUT requests and update user information
 void handlePut(const http_request &request)
 {
+          if (!authenticate(request))
+          {
+                    request.reply(status_codes::Unauthorized, "PLEASE LOGIN FIRST");
+                    return;
+          }
+
           // Extract user ID from the request URI
           std::string id = request.request_uri().to_string();
           id = id.substr(id.find_last_of('/') + 1);
@@ -138,6 +167,12 @@ void handlePut(const http_request &request)
 
 void handleDelete(const http_request &request)
 {
+          if (!authenticate(request))
+          {
+                    request.reply(status_codes::Unauthorized, "PLEASE LOGIN FIRST");
+                    return;
+          }
+
           // Extract user ID from the request URI
           std::string id = request.request_uri().to_string();
           id = id.substr(id.find_last_of('/') + 1);
