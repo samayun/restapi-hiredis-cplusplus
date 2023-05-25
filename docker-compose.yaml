@@ -1,16 +1,21 @@
-version: "3"
+version: "3.6"
 services:
-  # api:
-  #   build:
-  #     context: .
-  #   container_name: cplusplus-api
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - redis
+  api:
+    build:
+      context: .
+    container_name: cplusplus-api
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
   redis:
     image: redis:latest
     container_name: cplusplus-cache
+    hostname: redis
+    command: redis-server
+    volumes:
+      - ./volume/redis/data:/data
+      - ./volume/redis/redis-conf:/usr/local/etc/redis/redis.conf
     ports:
       - "6363:6379"
 

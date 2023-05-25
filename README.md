@@ -1,26 +1,32 @@
 # HI Redis
 
-# CREATE USER
+### CREATE USER
 
 ```sh
-curl -X POST - H "Content-Type: application/json" - d '{"id":"1", "name":"John", "age":"30"}' http://localhost:8080/users
+ curl -X POST -H "Content-Type: application/json" -d '{"id":"1", "name":"John", "age":"30"}' http://localhost:8080/users
 
 ```
 
-# GET USER
+### GET USER
 
-```curl
-curl http : // localhost:8080/users/1
+```sh
+curl http://localhost:8080/users/1
 
 ```
 
-## UPDATE
+### UPDATE
 
 ```sh
 curl -X PUT -H "Content-Type: application/json" -d '{"name":"John Doe", "age":"35"}' http://localhost:8080/users/1
 ```
 
-Delete a user (DELETE): `curl -X DELETE http://localhost:8080/users/1`
+### UPDATE
+
+Delete a user (DELETE):
+
+```sh
+curl -X DELETE http://localhost:8080/users/1`
+```
 
 ````
 
