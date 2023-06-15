@@ -19,6 +19,8 @@ int main()
 
                     printf("Listening on http://localhost:8080\n");
 
+                    printf("Datbase dashboard on http://localhost:8081\n");
+
                     std::cout << "Press Enter to exit." << std::endl;
                     std::cin.ignore();
           }

@@ -27,4 +27,4 @@ services:
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:
-      - ${REDIS_COMMANDER_PORT:-8063}:8081
+      - ${REDIS_COMMANDER_PORT:-8081}:8081
