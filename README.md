@@ -57,8 +57,5 @@ curl -X PUT -H "Content-Type: application/json" -d '{"name":"John Doe", "age":"3
 Delete a user (DELETE):
 
 ```sh
-curl -X DELETE http://localhost:8080/users/1`
+curl -X DELETE http://localhost:8080/users/1
 ```
-
-````
-
